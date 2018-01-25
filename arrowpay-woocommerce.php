@@ -73,6 +73,9 @@ function arrowpay_gateway_init() {
       $total = (int)($this->get_order_total() * 100);
       $currency = strtolower(get_woocommerce_currency());
       $public_key = $this->settings['public_key'];
+      $modal_title = $this->settings['modal_title'];
+      $modal_sub_title = $this->settings['modal_sub_title'];
+      $button_text = $this->settings['button_text'];
 
       ?>
 
@@ -106,15 +109,15 @@ function arrowpay_gateway_init() {
             public_key: '<?= $public_key ?>',
 
             // Button text
-            text: 'Pay With RaiBlocks',
+            text: '<?= $button_text ?>',
 
             // Optional title text
-            title: 'My Store',
+            title: '<?= $modal_title ?>',
 
-            sub_title: 'Checkout',
+            sub_title: '<?= $modal_sub_title ?>',
 
             onClick: function() {
-              var checkout_form = jQuery('form.checkout);
+              var checkout_form = jQuery('form.checkout');
 
               checkout_form.one('checkout_place_order', function(event) {
                 return false;
@@ -195,6 +198,30 @@ function arrowpay_gateway_init() {
           'type'        => 'text',
           'description' => __('Public_key used to link payments made on your site to your ArrowPay account.', 'arrowpay_gateway'),
           'default'     => __('', 'arrowpay_gateway'),
+          'desc_tip'    => true,
+        ),
+
+        'modal_title' => array(
+          'title'       => __('Modal title', 'arrowpay_gateway'),
+          'type'        => 'text',
+          'description' => __('Optional title to display when the ArrowPay modal is open'),
+          'default'     => __('', 'arrowpay_gateway'),
+          'desc_tip'    => true,
+        ),
+
+        'modal_sub_title' => array(
+          'title'       => __('Modal subtitle', 'arrowpay_gateway'),
+          'type'        => 'text',
+          'description' => __('Optional sub title to display when the ArrowPay modal is open', 'arrowpay_gateway'),
+          'default'     => __('', 'arrowpay_gateway'),
+          'desc_tip'    => true,
+        ),
+
+        'button_text' => array(
+          'title'       => __('Button text', 'arrowpay_gateway'),
+          'type'        => 'text',
+          'description' => __('Text displayed on the button that opens the ArrowPay modal.'),
+          'default'     => __('Pay With RaiBlocks', 'arrowpay_gateway'),
           'desc_tip'    => true,
         ),
       ));
