@@ -6,7 +6,6 @@
  * Description: This plugin allows you to accept RaiBlocks as payment on your Woocommerce site.
  * Version: 0.0.1
  * Author: Jason Romaior
- * Author URI: https://arrowpay.io
  * License: MIT
  */
 
